@@ -4,7 +4,9 @@ const startButton = document.getElementById("start");
 const stopButton = document.getElementById("stop");
 const gameContainer = document.querySelector(".game-container");
 const result = document.getElementById("result");
-const controls = document.querySelector(".controls-container");
+const pantallaPrincipal = document.querySelector(".pantalla-principal");
+const pantallaFinal = document.querySelector(".pantalla-final");
+const game= document.querySelector(".wrapper");
 let cards;
 let interval;
 let firstCard = false;
@@ -125,9 +127,7 @@ const matrixGenerator = (cardValues, size = 4) => {
             winCount += 1;
             //check if winCount ==half of cardValues
             if (winCount == Math.floor(cardValues.length / 2)) {
-              result.innerHTML = `<h2>You Won</h2>
-            <h4>Moves: ${movesCount}</h4>`;
-              stopGame();
+              youWon();
             }
           } else {
             //if the cards dont match
@@ -152,7 +152,7 @@ startButton.addEventListener("click", () => {
   seconds = 0;
   minutes = 0;
   //controls amd buttons visibility
-  controls.classList.add("hide");
+  pantallaPrincipal.classList.add("hide");
   stopButton.classList.remove("hide");
   startButton.classList.add("hide");
   //Start timer
@@ -165,14 +165,21 @@ startButton.addEventListener("click", () => {
 
 //Stop game
 stopButton.addEventListener(
-  "click",
-  (stopGame = () => {
-    controls.classList.remove("hide");
+  "click", () => {
+    pantallaPrincipal.classList.remove("hide");
     stopButton.classList.add("hide");
     startButton.classList.remove("hide");
     clearInterval(interval);
-  })
+  }
 );
+
+const youWon = () =>{
+  game.classList.add("hide");
+  pantallaPrincipal.classList.add("hide");
+  pantallaFinal.classList.remove("hide");
+  result.innerHTML = `<h2>You Won</h2> <h4>Moves: ${movesCount}</h4>`;
+  clearInterval(interval);
+}
 
 //Initialize values and func calls
 const initializer = () => {
