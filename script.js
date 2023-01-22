@@ -2,6 +2,7 @@ const moves = document.getElementById("moves-count");
 const timeValue = document.getElementById("time");
 const startButton = document.getElementById("start");
 const stopButton = document.getElementById("stop");
+const playAgain = document.getElementById("play-again");
 const gameContainer = document.querySelector(".game-container");
 const result = document.getElementById("result");
 const pantallaPrincipal = document.querySelector(".pantalla-principal");
@@ -153,6 +154,7 @@ startButton.addEventListener("click", () => {
   minutes = 0;
   //controls amd buttons visibility
   pantallaPrincipal.classList.add("hide");
+  game.classList.remove("hide");
   stopButton.classList.remove("hide");
   startButton.classList.add("hide");
   //Start timer
@@ -173,13 +175,22 @@ stopButton.addEventListener(
   }
 );
 
-const youWon = () =>{
+const youWon = () => {
   game.classList.add("hide");
   pantallaPrincipal.classList.add("hide");
   pantallaFinal.classList.remove("hide");
+  playAgain.classList.remove("hide");
   result.innerHTML = `<h2>You Won</h2> <h4>Moves: ${movesCount}</h4>`;
   clearInterval(interval);
 }
+
+playAgain.addEventListener("click", () => {
+  pantallaPrincipal.classList.remove("hide");
+  pantallaFinal.classList.add("hide");
+  startButton.classList.remove("hide");
+  clearInterval(interval);
+  }
+);
 
 //Initialize values and func calls
 const initializer = () => {
