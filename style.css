@@ -39,8 +39,8 @@ body {
 .card-after{
     position: absolute;
     border-radius: 3px;
-    width: 120%;
-    height: 120%;
+    width: 125%;
+    height: 125%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -75,17 +75,37 @@ transform: rotateY(0deg);
     top: 0;
   } 
 
+#custom-select{
+  display: inline-block;
+  margin: 2ex;
+  font-size: 1.1em;
+  padding: 8px 6px;
+  background-color: #fff;
+  cursor: pointer;
+  border:2px solid;
+    border-radius: 12px;
+    position: relative;
+    transition: all 0.25s ease;
+}
+
+#text{
+  
+  color: black;
+  font-size: x-large;
+  font-weight: bold; 
+}
 button {
     border: none;
     border-radius: 0.3em;
     padding: 1em 1.5em;
     cursor: pointer;
     font-size: 1.1em;
+    margin: 2ex;
 }
 #stop {
     font-size: 1.1em;
     display: block;
-    margin: 2em auto 0 auto;
+    margin: 3em auto 0 auto;
     background-color: #000000;
     color: #ffffff;
   }
