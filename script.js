@@ -5,6 +5,7 @@ const stopButton = document.getElementById("stop");
 const playAgain = document.getElementById("play-again");
 const gameContainer = document.querySelector(".game-container");
 const result = document.getElementById("result");
+const selecTheme = document.getElementById("custom-select");
 const pantallaPrincipal = document.querySelector(".pantalla-principal");
 const pantallaFinal = document.querySelector(".pantalla-final");
 const game= document.querySelector(".wrapper");
@@ -13,21 +14,49 @@ let interval;
 let firstCard = false;
 let secondCard = false;
 
+console.log(result);
+
 //Items array
-const items = [
-    {name: "1", image: "images/1.png" },
-    {name: "2", image: "images/2.png" },
-    {name: "3", image: "images/3.png" },
-    {name: "4", image: "images/4.png" },
-    {name: "5", image: "images/5.png" },
-    {name: "6", image: "images/6.png" },
-    {name: "7", image: "images/7.png" },
-    {name: "8", image: "images/8.png" },
-    {name: "9", image: "images/9.png" },
-    {name: "10", image: "images/10.png" },
-    {name: "11", image: "images/11.png" },
-    {name: "12", image: "images/12.png" }
+
+var itemsL = [
+  {name: "1", image: "images/1.png" },
+  {name: "2", image: "images/2.png" },
+  {name: "3", image: "images/3.png" },
+  {name: "4", image: "images/4.png" },
+  {name: "5", image: "images/5.png" },
+  {name: "6", image: "images/6.png" },
+  {name: "7", image: "images/7.png" },
+  {name: "8", image: "images/8.png" },
+  {name: "9", image: "images/9.png" },
+  {name: "10", image: "images/10.png" },
+  {name: "11", image: "images/11.png" },
+  {name: "12", image: "images/12.png" }
 ];
+var itemsP = [
+  {name: "1", image: "images/p1.png" },
+  {name: "2", image: "images/p2.png" },
+  {name: "3", image: "images/p3.png" },
+  {name: "4", image: "images/p4.png" },
+  {name: "5", image: "images/p5.png" },
+  {name: "6", image: "images/p6.png" },
+  {name: "7", image: "images/p7.png" },
+  {name: "8", image: "images/p8.png" },
+  {name: "9", image: "images/p9.png" },
+  {name: "10", image: "images/p10.png" },
+  {name: "11", image: "images/p11.png" },
+  {name: "12", image: "images/p12.png" }
+];
+var items = itemsL;
+selecTheme.addEventListener('change', cardsimages);
+
+function cardsimages(){
+    if(selecTheme.value == "1"){
+    items = itemsP;}
+    if(selecTheme.value == "0"){
+    items = itemsL;}
+    console.log(items);
+}
+
 
 //Initial Time
 let seconds = 0,
@@ -162,7 +191,8 @@ startButton.addEventListener("click", () => {
   //initial moves
   moves.innerHTML = `<span>Moves:</span> ${movesCount}`;
   timeValue.innerHTML = `<span>Time: </span>00:00`;
-  initializer();
+    initializer();
+  
 });
 
 //Stop game
@@ -176,13 +206,19 @@ stopButton.addEventListener(
 );
 
 const youWon = () => {
+  
   game.classList.add("hide");
   pantallaPrincipal.classList.add("hide");
   pantallaFinal.classList.remove("hide");
   playAgain.classList.remove("hide");
-  result.innerHTML = `<h2>You Won</h2> <h4>Moves: ${movesCount}</h4>`;
+  
+      result.innerHTML = `<h2>You Won</h2> <h4>Moves: ${movesCount}</h4>`;
+     
+  
+  console.log(result);
   clearInterval(interval);
 }
+
 
 playAgain.addEventListener("click", () => {
   pantallaPrincipal.classList.remove("hide");
@@ -193,8 +229,13 @@ playAgain.addEventListener("click", () => {
 );
 
 //Initialize values and func calls
+
 const initializer = () => {
-  result.innerText = "";
+  
+      result.innerText = " ";
+    
+  
+  
   winCount = 0;
   let cardValues = generateRandom();
   console.log(cardValues);
