@@ -14,7 +14,8 @@ let interval;
 let firstCard = false;
 let secondCard = false;
 
-console.log(result);
+var music =new Audio("audio/yagakimi.mp3");
+
 
 //Items array
 
@@ -51,9 +52,13 @@ selecTheme.addEventListener('change', cardsimages);
 
 function cardsimages(){
     if(selecTheme.value == "1"){
-    items = itemsP;}
+      items = itemsP;
+      music= new Audio("audio/miku.mp3");
+    }
     if(selecTheme.value == "0"){
-    items = itemsL;}
+      items = itemsL;
+      music = new Audio("audio/yagakimi.mp3");
+    }
     console.log(items);
 }
 
@@ -178,6 +183,8 @@ const matrixGenerator = (cardValues, size = 4) => {
 
 //Start game
 startButton.addEventListener("click", () => {
+  music.play();
+  music.loop =true;
   movesCount = 0;
   seconds = 0;
   minutes = 0;
@@ -202,6 +209,9 @@ stopButton.addEventListener(
     stopButton.classList.add("hide");
     startButton.classList.remove("hide");
     clearInterval(interval);
+    music.pause();
+    music.currentTime = 0;
+  
   }
 );
 
@@ -225,6 +235,8 @@ playAgain.addEventListener("click", () => {
   pantallaFinal.classList.add("hide");
   startButton.classList.remove("hide");
   clearInterval(interval);
+  music.pause();
+  music.currentTime = 0;
   }
 );
 
